@@ -2,9 +2,11 @@
 var http = require('http');
 var fs = require('fs');
 
+var counter = 0;
+
 //write out some numbers
 function writeNumbers(response) {
-	var counter = 0;
+	
 	// increment global, write to client
 	for(var i = 0;i<100;i++) {
 		counter++;
@@ -17,7 +19,7 @@ function writeNumbers(response) {
 //create http server
 http.createServer(function (request, response) {
 	var query = require('url').parse(request.url).query;
-	var app = require('querystring').parse(query).file+".txt";
+	 app = require('querystring').parse(query).file+".txt";
 
 	//content header
 	response.writeHead(200,{'content-type': 'text/plain',
@@ -39,9 +41,6 @@ http.createServer(function (request, response) {
 	
 	}
 	, 2000);
-	
-	//write message
-	response.end("Hello, World!\n");
 
 }).listen(8082);
 
